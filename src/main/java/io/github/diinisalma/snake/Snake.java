@@ -1,3 +1,5 @@
+package io.github.diinisalma.snake;
+
 public class Snake {
     private int head;
     private int tail;
@@ -30,9 +32,7 @@ public class Snake {
     }
 
     private boolean isValid(int head) {
-        if (head == 100)
-            return false;
-        return true;
+        return head != 100;
     }
 
     @Override
@@ -55,5 +55,4 @@ public class Snake {
         Snake other = (Snake) obj;
         return tail == other.tail || head == other.head;
     }
-
 }
