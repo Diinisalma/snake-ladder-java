@@ -1,3 +1,5 @@
+package io.github.diinisalma.snake;
+
 public class Ladder {
     private int start;
     private int end;
@@ -43,5 +45,4 @@ public class Ladder {
         Ladder other = (Ladder) obj;
         return start == other.start || end == other.end;
     }
-
 }

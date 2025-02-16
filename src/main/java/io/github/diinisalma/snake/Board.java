@@ -1,3 +1,4 @@
+package io.github.diinisalma.snake;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +8,7 @@ public class Board {
     private final List<Snake> snakes = new ArrayList<>();
     private final List<Ladder> ladders = new ArrayList<>();
     private Player[] players;
-    private final Dice dice = new Dice();
+    private static Dice dice;
     private Player winner;
     private boolean gameOver = false;
 
@@ -82,5 +83,4 @@ public class Board {
         }
         return false;
     }
-
 }

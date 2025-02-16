@@ -1,5 +1,6 @@
-public class Player {
+package io.github.diinisalma.snake;
 
+public class Player {
     private String name;
     private int endPosition = 0;
     private int startPosition = 0;
@@ -37,5 +38,4 @@ public class Player {
     public void setStartPosition(int startPosition) {
         this.startPosition = startPosition;
     }
-
 }
