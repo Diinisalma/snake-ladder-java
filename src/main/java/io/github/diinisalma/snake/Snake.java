@@ -1,12 +1,14 @@
 package io.github.diinisalma.snake;
 
+import java.util.Objects;
+
 public class Snake {
     private int head;
     private int tail;
 
     public Snake(int head, int tail) {
-        if (!isValid(head)) {
-            throw new RuntimeException("Invalid head position");
+        if (!isValid(tail)) {
+            throw new RuntimeException("Invalid tail position");
         }
         this.head = head;
         this.tail = tail;
@@ -17,9 +19,6 @@ public class Snake {
     }
 
     public void setHead(int head) {
-        if (!isValid(head)) {
-            throw new RuntimeException("Invalid head position");
-        }
         this.head = head;
     }
 
@@ -28,20 +27,19 @@ public class Snake {
     }
 
     public void setTail(int tail) {
+        if (!isValid(tail)) {
+            throw new RuntimeException("Invalid tail position");
+        }
         this.tail = tail;
     }
 
-    private boolean isValid(int head) {
-        return head != 100;
+    private boolean isValid(int tail) {
+        return tail < 100 && tail > 1;
     }
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + head;
-        result = prime * result + tail;
-        return result;
+        return Objects.hash(head, tail);
     }
 
     @Override
@@ -53,6 +51,6 @@ public class Snake {
         if (getClass() != obj.getClass())
             return false;
         Snake other = (Snake) obj;
-        return tail == other.tail || head == other.head;
+        return tail == other.tail && head == other.head;
     }
 }

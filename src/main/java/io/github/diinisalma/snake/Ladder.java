@@ -1,5 +1,7 @@
 package io.github.diinisalma.snake;
 
+import java.util.Objects;
+
 public class Ladder {
     private int start;
     private int end;
@@ -27,11 +29,7 @@ public class Ladder {
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + start;
-        result = prime * result + end;
-        return result;
+        return Objects.hash(start, end);
     }
 
     @Override
@@ -43,6 +41,6 @@ public class Ladder {
         if (getClass() != obj.getClass())
             return false;
         Ladder other = (Ladder) obj;
-        return start == other.start || end == other.end;
+        return start == other.start && end == other.end;
     }
 }
