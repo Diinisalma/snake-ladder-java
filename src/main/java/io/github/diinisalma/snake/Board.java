@@ -17,18 +17,16 @@ public class Board {
             // Enter no of snakes
             int noOfSnakes = scanner.nextInt();
             for (int idx = 0; idx < noOfSnakes; idx++) {
-                Snake inputSnake = new Snake(scanner.nextInt(), scanner.nextInt());
-                if (!isSnakeOverlapWithLadder(inputSnake)) {
-                    snakes.add(inputSnake);
-                }
+                snakes.add(new Snake(scanner.nextInt(), scanner.nextInt()));
             }
             // Enter no of ladders
             int noOfLadders = scanner.nextInt();
             for (int idx = 0; idx < noOfLadders; idx++) {
                 Ladder inputLadder = new Ladder(scanner.nextInt(), scanner.nextInt());
-                if (!isLadderOverlapWithSnake(inputLadder)) {
-                    ladders.add(inputLadder);
+                if (isLadderOverlapWithSnake(inputLadder)) {
+                    throw new RuntimeException("Ladder overlaps with snake");
                 }
+                ladders.add(inputLadder);
             }
             // Enter no of players
             int noOfPlayers = scanner.nextInt();
@@ -39,6 +37,7 @@ public class Board {
             startGame();
         } catch (Exception e) {
             e.printStackTrace();
+            throw e;
         }
     }
 
@@ -71,16 +70,7 @@ public class Board {
     }
 
     private boolean isLadderOverlapWithSnake(Ladder ladder) {
-        if (snakes.contains(new Snake(ladder.getEnd(), ladder.getStart()))) {
-            throw new RuntimeException("Ladder overlaps with snake");
-        }
-        return false;
-    }
-
-    private boolean isSnakeOverlapWithLadder(Snake snake) {
-        if (ladders.contains(new Ladder(snake.getTail(), snake.getHead()))) {
-            throw new RuntimeException("Snake overlaps with ladder");
-        }
-        return false;
+        Snake snake = new Snake(ladder.getEnd(), ladder.getStart());
+        return snakes.stream().anyMatch(s -> s.equals(snake));
     }
 }
